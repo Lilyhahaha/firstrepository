@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.secoo.dao.ImageDao">
+    <!--上传图片-->
+    <insert id="insert" parameterType="Image">
+        insert into t_image(id,oldname,newname,path,type,width,height,status,phoID,mainID,codeID) values (#{id},#{oldname},#{newname},#{path},#{type},#{width},#{height},
+                    #{status},#{user.id},#{image.id},#{code.id})
+    </insert>
+    <!--删除图片-->
+    <delete id="delete" parameterType="string">
+        delete from t_image where id=#{id}
+    </delete>
+
+    <sql id="query">
+        SELECT id,oldname.newname,path,type,width,height,status,phoID,ediID,audID,mainID,codeID
+        from t_image
+    </sql>
+    <!--查看图片-->
+    <select id="queryOne" parameterType="string" resultType="Image">
+        <include refid="query"/> where id=#{id}
+    </select>
+    <!--根据商品码查看所有图片-->
+    <select id="queryByCode" parameterType="string" resultType="Image">
+        <include refid="query"/> where codeID=#{cid}
+    </select>
+</mapper>

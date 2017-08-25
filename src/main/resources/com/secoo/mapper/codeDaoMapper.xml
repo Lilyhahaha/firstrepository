@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.secoo.dao.CodeDao">
+    <!--根据品牌id查所有商品码-->
+    <select id="queryByBrand" resultType="Code">
+        select id,code,bid from t_brand where bid=#{bid}
+    </select>
+</mapper>

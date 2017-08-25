@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.secoo.dao.TaskDao">
+    <!--添加任务-->
+    <insert id="insert" parameterType="Task">
+        insert into t_task values (#{id},#{bname},#{gcode},#{status},#{user.id})
+    </insert>
+    <!--删除任务-->
+    <delete id="delete" parameterType="string">
+        delete from t_task where id=#{id}
+    </delete>
+    <!--修改任务状态-->
+    <update id="update" parameterType="Task">
+        update t_task set status=#{status} where id=#{id}
+    </update>
+    <sql id="query">
+        select id,bname,gcode,status,pid from t_task
+    </sql>
+    <!--查看任务详情-->
+    <select id="query" parameterType="string" resultType="Task">
+        <include refid="query"/> where id=#{id}
+    </select>
+    <!--查看所有任务，即查看任务列表-->
+    <select id="queryByPid" parameterType="string" resultType="Task">
+        <include refid="query"/> where status='unfinish' and pid=#{pid}
+    </select>
+</mapper>
