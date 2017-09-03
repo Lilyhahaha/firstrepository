@@ -1,0 +1,11 @@
+user 
+	id
+	name
+	password
+	salt
+	imagepath
+	nikeName
+	sex
+	address
+	signName
+	

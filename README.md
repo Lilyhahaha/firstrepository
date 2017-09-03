@@ -1,2 +1,0 @@
-# imagemanage
-test upload
